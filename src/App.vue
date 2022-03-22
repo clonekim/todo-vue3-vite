@@ -10,12 +10,12 @@
 <script lang="ts">
 import { defineComponent, defineAsyncComponent, reactive, ref } from 'vue';
 import { useItemStore } from './store/item';
-// import ItemList from './components/ItemList.vue';
+import ItemList from './components/ItemList.vue';
 
 export default {
   name: 'App',
   components: {
-    ItemList: defineAsyncComponent(() => import('./components/ItemList.vue')),
+    ItemList
   },
 
   setup() {
