@@ -1,5 +1,11 @@
 # Vue 3 + Typescript + Vite
 
+```shell
+yarn create vite todo-vue3-vite --template vue-ts
+or
+npm init vue@3
+```
+
 This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
 ## Recommended IDE Setup
