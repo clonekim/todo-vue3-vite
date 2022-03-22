@@ -15,11 +15,19 @@ export type RootState = {
 export const useItemStore = defineStore('itemStore', {
   state: () => {
     return {
-      items: initState as ItemInterface[],
+      items: [] as ItemInterface[],
     };
   },
 
   actions: {
+    async get() {
+      return new Promise<ItemInterface[]>((resolve, _) => {
+        setTimeout(() => {
+          resolve(initState);
+        }, 3000);
+      });
+    },
+
     add(data: ItemInterface) {
       this.items.push(data);
     },

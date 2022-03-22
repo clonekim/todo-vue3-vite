@@ -1,22 +1,21 @@
 <template>
-  <div class="home">
-    <ItemList :items="items" />
-    <div>
-      <input type="text" v-model="text" />
-      <button @click="onSave">Add</button>
-    </div>
-  </div>
+  <suspense>
+    <ItemList />
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </suspense>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
-import ItemList from './components/ItemList.vue';
+import { defineComponent, defineAsyncComponent, reactive, ref } from 'vue';
 import { useItemStore } from './store/item';
+// import ItemList from './components/ItemList.vue';
 
-export default defineComponent({
+export default {
   name: 'App',
   components: {
-    ItemList,
+    ItemList: defineAsyncComponent(() => import('./components/ItemList.vue')),
   },
 
   setup() {
@@ -36,8 +35,7 @@ export default defineComponent({
     return {
       text,
       onSave,
-      items: itemStore.items,
     };
   },
-});
+};
 </script>

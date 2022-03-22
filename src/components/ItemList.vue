@@ -14,18 +14,16 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { ItemInterface } from '../models/Item.interface';
+import { useItemStore } from '../store/item';
 import Item from './Item.vue';
 
 export default defineComponent({
   components: { Item },
 
-  props: {
-    items: {
-      type: Array as PropType<ItemInterface[]>,
-    },
-  },
+  async setup() {
+    const itemStore = useItemStore();
+    const items = await itemStore.get();
 
-  setup() {
     const onItemSelect = (item: ItemInterface) => {
       item.selected = !item.selected;
       console.log('onItemSelect', item.id, item.selected);
@@ -33,6 +31,7 @@ export default defineComponent({
 
     return {
       onItemSelect,
+      items,
     };
   },
 });
